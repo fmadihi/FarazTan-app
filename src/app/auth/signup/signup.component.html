@@ -1,0 +1,43 @@
+<section class="signUpForm">
+  <form
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    #f="ngForm"
+    (ngSubmit)="onSubmit(f)"
+  >
+    <mat-form-field>
+      <input
+        matInput
+        type="email"
+        placeholder="ایمیل"
+        ngModel
+        name="email"
+        email
+        required
+        #inputEmail="ngModel"
+      />
+      <mat-hint>ایمیل را وارد کنید</mat-hint>
+      <mat-error *ngIf="inputEmail.hasError('required')">
+        ایمیل لازم است.
+      </mat-error>
+      <mat-error *ngIf="inputEmail.hasError('email')">
+        ایمیل نامعتبر است.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field hintLabel="حداقل باید 6 حرف بنویسید.">
+      <input
+        matInput
+        type="text"
+        placeholder="رمز عبور"
+        ngModel
+        name="password"
+        required
+        minlength="6"
+        #pwInput="ngModel"
+      />
+      <mat-hint align="end">{{ pwInput.value?.length }} / 6</mat-hint>
+      <mat-error>باید حداقل سه کاراکتر باید وارد شود.</mat-error>
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="primary">Submit</button>
+  </form>
+</section>
